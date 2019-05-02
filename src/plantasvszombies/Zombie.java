@@ -13,11 +13,13 @@ public abstract class Zombie {
 
     private int vida;
     private int daño;
+    private int frecuencia;
 
     //constructor
-    public Zombie(int vida, int daño) {
+    public Zombie(int vida, int daño, int frecuencia) {
         this.vida = vida;
         this.daño = daño;
+        this.frecuencia = frecuencia;
     }
 
     public int getVida() {
@@ -35,13 +37,19 @@ public abstract class Zombie {
     public void setDaño(int daño) {
         this.daño = daño;
     }
-    
-    public abstract void ataqueZombie (int daño);
+
+    public int getFrecuencia() {
+        return frecuencia;
+    }
+
+    public void setFrecuencia(int frecuencia) {
+        this.frecuencia = frecuencia;
+    }
+
+    public abstract void ataqueZombie(int daño);
 
     @Override
     public String toString() {
         return "(" + vida + ")";
     }
-
-    
 }

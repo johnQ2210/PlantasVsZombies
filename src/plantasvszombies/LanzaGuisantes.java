@@ -11,27 +11,8 @@ package plantasvszombies;
  */
 public class LanzaGuisantes extends Planta {
 
-    private int frecuencia;
-
     public LanzaGuisantes() {
-        super(3, 50);
-    }
-
-    public int getFrecuencia() {
-        return frecuencia;
-    }
-
-    public void setFrecuencia(int frecuencia) {
-        this.frecuencia = frecuencia;
-    }
-
-    public void disparoGuisante(ZombieComun zombie) {
-        zombie.getVida();
-
-        int disparo = 0;
-        while (frecuencia != 0) {
-            disparo += 1;
-        }
+        super(3, 50, 1, 1);
     }
 
     @Override

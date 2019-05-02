@@ -38,11 +38,11 @@ public class Juego extends javax.swing.JFrame {
         jTable1.setCellSelectionEnabled(true);      //Seleccionar únicamente la celda, no la fila entera
         jTable1.setSurrendersFocusOnKeystroke(true);//Sea editable la celda con sólo poner una entrada
 
-        //ArrayList<Integer> column = new ArrayList<>();
+        
         ZombieComun zombie = new ZombieComun();                     //Prueba de cómo insertar un objeto en filas aleatorias
         for (int i = 0; i < filas; i++) {
             int fila_ale = filaAleatoria(filas);
-            model.setValueAt(zombie.toString(), fila_ale, columna-1);
+            model.setValueAt(zombie.toString(), fila_ale, columna-1);   //Se cree un Zombie en fila aleatoria, pero en la última columna
         }
 
         /**
@@ -224,7 +224,7 @@ public class Juego extends javax.swing.JFrame {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-        Juegoclase juego = new Juegoclase(50);
+        Juegoclase juego = new Juegoclase(Inicio.nivel);
         String soles = String.valueOf(juego.setSol(50));
         jTextField1.setText(soles);
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -247,14 +247,6 @@ public class Juego extends javax.swing.JFrame {
             LanzaGuisantes lanzaGuisante = new LanzaGuisantes();
         }
     }
-    /**public void añadirAleatoriamenteZombie(int fila){
-        int i = 0;
-        while(i < (Integer.parseInt(Inicio.x))){
-            if(Celda no está ocupada){
-                    Zombie z = new Zombie();
-        }
-    }
-    * */
 
     /**
      * @param args the command line arguments

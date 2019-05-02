@@ -19,10 +19,13 @@ public class Juegoclase {
     private int sol;
     private String nivel;
     private int turno;
+    private int nZombies = 0;
+    private int zombiesMuertos = 0;
 
-
-    public Juegoclase(int sol) {
-        this.sol = sol;
+    public Juegoclase(String nivel) {
+        this.sol = 50;
+        this.nivel = nivel;
+        this.turno = turno;
     }
 
     public int getTurno() {
@@ -73,6 +76,22 @@ public class Juegoclase {
         this.z = z;
     }
 
+    public int getnZombies() {
+        return nZombies;
+    }
+
+    public void setnZombies(int nZombies) {
+        this.nZombies = nZombies;
+    }
+
+    public int getZombiesMuertos() {
+        return zombiesMuertos;
+    }
+
+    public void setZombiesMuertos(int zombiesMuertos) {
+        this.zombiesMuertos = zombiesMuertos;
+    }
+
     public void añadirGirasol(Girasol girasol) {
         if (sol >= girasol.getCoste()) {
             g.add(girasol);
@@ -121,48 +140,63 @@ public class Juegoclase {
         switch (nivel) {
             case "Baja":
                 numeroZombies = 5;
-                if(turno == 10){
+                if (turno == 10) {
                     inicioAparicion();
-                    
+
                 }
                 //cantidadZombies(numeroZombies);
-                
-                
+
                 break;
             case "Media":
                 numeroZombies = 15;
-                if (turno == 7){
+                if (turno == 7) {
                     inicioAparicion();
                 }
                 //cantidadZombies(numeroZombies);
                 break;
             case "Alta":
                 numeroZombies = 25;
-                if(turno == 5){
+                if (turno == 5) {
                     inicioAparicion();
                 }
                 //cantidadZombies(numeroZombies);
                 break;
             case "Imposible":
                 numeroZombies = 50;
-                if(turno == 5){
+                if (turno == 5) {
                     inicioAparicion();
                 }
                 //cantidadZombies(numeroZombies);
-                
+
                 break;
         }
     }
-    
-    public boolean cantidadZombies(int nZombies){
-        if(z.size() == nZombies ){
+
+    public boolean cantidadZombies(int nZombies) {
+        if (z.size() == nZombies) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
-    public boolean inicioAparicion(){
-        return true;
+
+    public int inicioAparicion() {
+        int turnoSalida = 0;
+        switch (this.nivel) {
+            case "Baja":
+                turnoSalida = 10;
+                break;
+            case "Media":
+                turnoSalida = 7;
+                break;
+            case "Alta":
+                turnoSalida = 5;
+                break;
+            case "Imposible":
+                turnoSalida = 5;
+                break;
+        }
+        return turnoSalida;
     }
 
 }

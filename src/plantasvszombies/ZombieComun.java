@@ -10,23 +10,24 @@ package plantasvszombies;
  * @author juniorchunga
  */
 public class ZombieComun extends Zombie {
-    private int frecuencia;
 
+    boolean moverse;
     public ZombieComun() {
-        super(5, 1);
-    }
-    
-    public int getFrecuencia() {
-        return frecuencia;
+        super(5, 1, 1);
+        this.moverse = moverse;
     }
 
-    public void setFrecuencia(int frecuencia) {
-        this.frecuencia = frecuencia;
+    public boolean isMoverse() {
+        return moverse;
+    }
+
+    public void setMoverse(boolean moverse) {
+        this.moverse = moverse;
     }
     
     public void avanceCamino(){
         int contador = 0;
-        if(frecuencia%2 == 0){
+        if(super.getFrecuencia()%2 == 0){
             contador += 1; 
         } else {
             contador += 0;

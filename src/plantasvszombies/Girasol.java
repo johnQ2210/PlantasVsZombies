@@ -11,23 +11,15 @@ package plantasvszombies;
  */
 public class Girasol extends Planta {
 
-    private int frecuencia;
 
     public Girasol() {
-        super(1, 20);
+        super(1, 20, 0, 0);
     }
 
-    public int getFrecuencia() {
-        return frecuencia;
-    }
-
-    public void setFrecuencia(int frecuencia) {
-        this.frecuencia = frecuencia;
-    }
     
     public void generarSol(){
         int sol = 0;
-        if(frecuencia % 2 == 0){
+        if((super.getFrecuencia() % 2) == 0){
             sol += 1;
         } else{
             sol += 0;
