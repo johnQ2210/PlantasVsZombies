@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e791d777-193d-4688-84a6-c82e348cd6ae" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/build/classes/plantasvszombies/Girasol.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/plantasvszombies/Girasol.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Inicio$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Inicio$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Inicio.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Inicio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Juego$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Juego$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Juego$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Juego$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Juego$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Juego$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Juego$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Juego$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Juego$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Juego$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Juego$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Juego$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Juego.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/plantasvszombies/Interfaz/Juego.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/plantasvszombies/Juegoclase.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/plantasvszombies/Juegoclase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/plantasvszombies/LanzaGuisantes.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/plantasvszombies/LanzaGuisantes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/plantasvszombies/Planta.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/plantasvszombies/Planta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/plantasvszombies/ZombieComun.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/plantasvszombies/ZombieComun.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plantasvszombies/Girasol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plantasvszombies/Girasol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plantasvszombies/Interfaz/Inicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plantasvszombies/Interfaz/Inicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plantasvszombies/Interfaz/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plantasvszombies/Interfaz/Juego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plantasvszombies/Juegoclase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plantasvszombies/Juegoclase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plantasvszombies/LanzaGuisantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plantasvszombies/LanzaGuisantes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plantasvszombies/Planta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plantasvszombies/Planta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plantasvszombies/ZombieComun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plantasvszombies/ZombieComun.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="638" />
+    <option name="height" value="724" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="PlantasVsZombies" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PlantasVsZombies" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PlantasVsZombies" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PlantasVsZombies" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e791d777-193d-4688-84a6-c82e348cd6ae" name="Default Changelist" comment="" />
+      <created>1557274826004</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1557274826004</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="638" height="724" extended-state="0" />
+    <layout>
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

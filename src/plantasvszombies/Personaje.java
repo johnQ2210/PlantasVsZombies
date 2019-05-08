@@ -9,14 +9,18 @@ package plantasvszombies;
  *
  * @author juniorchunga
  */
-public class Girasol extends Planta {
+public class Personaje {
+    private int vida;
 
+    public Personaje(int vida) {
+        this.vida = vida;
+    }
 
-    public Girasol() {
-        super(1, 20, 0, 0);
+    public int getVida() {
+        return vida;
     }
-    public void accion(Zombie zombie){
-        
+
+    public void setVida(int vida) {
+        this.vida += vida;
     }
-    
 }

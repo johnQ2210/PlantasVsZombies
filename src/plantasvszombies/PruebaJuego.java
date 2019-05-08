@@ -9,14 +9,6 @@ package plantasvszombies;
  *
  * @author juniorchunga
  */
-public class Girasol extends Planta {
-
-
-    public Girasol() {
-        super(1, 20, 0, 0);
-    }
-    public void accion(Zombie zombie){
-        
-    }
+public class PruebaJuego {
     
 }

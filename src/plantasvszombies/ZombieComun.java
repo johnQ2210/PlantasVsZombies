@@ -12,9 +12,13 @@ package plantasvszombies;
 public class ZombieComun extends Zombie {
 
     boolean moverse;
-    public ZombieComun() {
+    int fila;
+    int column;
+    public ZombieComun(boolean moverse, int fila, int column) {
         super(5, 1, 1);
         this.moverse = moverse;
+        this.fila = fila;
+        this.column = column;
     }
 
     public boolean isMoverse() {
@@ -24,16 +28,25 @@ public class ZombieComun extends Zombie {
     public void setMoverse(boolean moverse) {
         this.moverse = moverse;
     }
-    
-    public void avanceCamino(){
-        int contador = 0;
-        if(super.getFrecuencia()%2 == 0){
-            contador += 1; 
-        } else {
-            contador += 0;
-        }
+
+    public int getFila() {
+        return fila;
     }
-    public void ataqueZombie (int daño){
+
+    public void setFila(int fila) {
+        this.fila = fila;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
+    }
+    
+    
+    public void ataqueZombie (Personaje personaje){
         
     }
 

@@ -11,13 +11,32 @@ package plantasvszombies;
  */
 public class LanzaGuisantes extends Planta {
 
-    public LanzaGuisantes() {
+    private int alcance;
+    private int fila;
+    
+    public LanzaGuisantes(int fila) {
         super(3, 50, 1, 1);
+        this.alcance = 1;
+        this.fila = fila;
     }
 
-    @Override
-    public String toString() {
-        return "LanzaGuisantes" + "(" + super.toString() + ")";
+    public int getFila() {
+        return fila;
+    }
+
+    public void setFila(int fila) {
+        this.fila = fila;
+    }
+
+    public int getAlcance() {
+        return alcance;
+    }
+
+    public void setAlcance(int alcance) {
+        this.alcance = alcance;
+    }
+    public void accion(Zombie zombie){
+        zombie.setVida(-1);
     }
 
 }

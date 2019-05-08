@@ -9,16 +9,15 @@ package plantasvszombies;
  *
  * @author juniorchunga
  */
-public class Planta {
+public class Planta extends Personaje{
 
-    private int vida;
     private int coste;
     private int frecuencia;
     private int daño;
 
     //Constructor
     public Planta(int vida, int coste, int frecuencia, int daño) {
-        this.vida = vida;
+        super(vida);
         this.coste = coste;
         this.frecuencia = frecuencia;
         this.daño = daño;
@@ -40,25 +39,12 @@ public class Planta {
         this.frecuencia = frecuencia;
     }
 
-    public int getVida() {
-        return vida;
-    }
-
-    public void setVida(int vida) {
-        this.vida = vida;
-    }
-
     public int getCoste() {
         return coste;
     }
 
     public void setCoste(int coste) {
         this.coste = coste;
-    }
-
-    @Override
-    public String toString() {
-        return "(" + vida + ")";
     }
 
 }

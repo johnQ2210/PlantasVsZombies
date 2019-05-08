@@ -9,25 +9,18 @@ package plantasvszombies;
  *
  * @author juniorchunga
  */
-public abstract class Zombie {
+public abstract class Zombie extends Personaje{
 
-    private int vida;
+    private boolean movimiento;
     private int daño;
     private int frecuencia;
 
     //constructor
     public Zombie(int vida, int daño, int frecuencia) {
-        this.vida = vida;
+        super(vida);
+        this.movimiento = movimiento;
         this.daño = daño;
         this.frecuencia = frecuencia;
-    }
-
-    public int getVida() {
-        return vida;
-    }
-
-    public void setVida(int vida) {
-        this.vida = vida;
     }
 
     public int getDaño() {
@@ -46,10 +39,23 @@ public abstract class Zombie {
         this.frecuencia = frecuencia;
     }
 
-    public abstract void ataqueZombie(int daño);
+    public boolean isMovimiento() {
+        return movimiento;
+    }
+
+    public void setMovimiento(boolean movimiento) {
+        this.movimiento = movimiento;
+    }
+    public void moverZombie(){
+        
+    }
+
+    public void ataqueZombie(Personaje personaje){
+        personaje.setVida(-1);
+    }
 
     @Override
     public String toString() {
-        return "(" + vida + ")";
+        return "(" + super.toString() + ")";
     }
 }

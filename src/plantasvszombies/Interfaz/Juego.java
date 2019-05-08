@@ -5,13 +5,9 @@
  */
 package plantasvszombies.Interfaz;
 
-import java.util.Random;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
-import plantasvszombies.Girasol;
-import plantasvszombies.ZombieComun;
-import plantasvszombies.LanzaGuisantes;
-import plantasvszombies.Juegoclase;
+import plantasvszombies.*;
 
 /**
  *
@@ -22,15 +18,24 @@ public class Juego extends javax.swing.JFrame {
     /**
      * Creates new form Juego
      */
+    
+    Juegoclase juego;
     public Juego() {
         initComponents();
+
+        //Creamos los objetos que necesitamos para el juego
+        Inicio ini1 = new Inicio();     //Ventana principal
+        int columna = Integer.parseInt(Inicio.t);   //Guardamos como entero el nº de columna que pide el usuario
+        int filas = Integer.parseInt(Inicio.x);     //Guardamos como entero el nº de fila que pide el usuario
+        String nivel = Inicio.nivel;                //Guardamos el nivel que pide el usuario
+        Juegoclase juego = new Juegoclase(filas, columna, nivel);        //Clase donde se crea la matriz del juego
+
+        //Características de la ventana
         setLocationRelativeTo(null);            //Centramos la ventana
         setResizable(false);                    //Hacemos que no se máximice
         setTitle("Plantas vs Zombies");         //Añadimos un título a la ventana
 
-        Inicio ini1 = new Inicio();                 //Creamos el objeto de la vista principal
-        int columna = Integer.parseInt(Inicio.t);   //Guardamos como entero el nº de columna que pide el usuario
-        int filas = Integer.parseInt(Inicio.x);     //Guardamos como entero el nº de fila que pide el usuario
+        //Guardamos como entero el nº de fila que pide el usuario
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();  //Creamos un jTable vacio
         model.setColumnCount(columna);              //Añadimos las columnas que hemos guardado en la variable "columna"
         model.setRowCount(filas);                   //Añadimos las filas que hemos guardado en la variable "filas"
@@ -38,16 +43,58 @@ public class Juego extends javax.swing.JFrame {
         jTable1.setCellSelectionEnabled(true);      //Seleccionar únicamente la celda, no la fila entera
         jTable1.setSurrendersFocusOnKeystroke(true);//Sea editable la celda con sólo poner una entrada
 
-        
-        ZombieComun zombie = new ZombieComun();                     //Prueba de cómo insertar un objeto en filas aleatorias
-        for (int i = 0; i < filas; i++) {
-            int fila_ale = filaAleatoria(filas);
-            model.setValueAt(zombie.toString(), fila_ale, columna-1);   //Se cree un Zombie en fila aleatoria, pero en la última columna
-        }
+        String sol = String.valueOf(juego.getSol());
+        String turno = String.valueOf(juego.getTurno());
+        jTextField1.setText(sol);
+        jTextField2.setText(turno);
 
-        /**
-         * Se tiene que revisar el programa de arriba.
-         */
+        boolean play = true;
+        while (play) {
+            boolean salidaZombie = juego.salida_tablero_Zombies(juego.getSalidaZombie(), juego.getTurno());
+            int n_Zombies = juego.zombiesCreados();
+            for (int i = 0; i < n_Zombies; i++) {
+                if (salidaZombie) {
+                    juego.crearZombie();
+                }
+            }
+            boolean turn = true;
+            while (turn) {
+                String x = (String) jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn());
+                switch (x) {
+                    case "g":
+                        juego.colocarGirasol(jTable1.getSelectedRow(), jTable1.getSelectedColumn());
+                        break;
+                    case "l":
+                        juego.colocarLanzaGuisantes(jTable1.getSelectedRow(), jTable1.getSelectedColumn());
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(this, "Introduzca bien la planta que desee", "Error de entrada", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+            juego.setSol(juego.getGirasoles() * 10);
+            juego.disparoLanzaGuisante();
+            juego.movimientoZombie();
+            juego.setColocarLanzaGuisante(true);
+            juego.setColocarGirasol(true);
+
+            if (juego.getZombies() == juego.getZombiesMuertos()) {
+                if(jButton4.)
+                play = false;
+                JOptionPane.showMessageDialog(this, "¡Felicidades! Han ganado las plantas", "Fin del juego", JOptionPane.CLOSED_OPTION);
+            }
+            if(juego.getZ().size() == 0 && juego.getTurno() > 30){
+                jButton4.addActionListener(this);
+                play = false;
+                JOptionPane.showMessageDialog(this, "Felicidades! Han ganado las plantas", "Fin del juego", JOptionPane.CLOSED_OPTION);
+            }
+            for(ZombieComun z : juego.getZ()){
+                jButton4.addActionListener(this);
+                play = false;
+                if(z.getColumn() == 0){
+                    JOptionPane.showMessageDialog(this, "¡Fallaste! Han ganado los zombies", "Fin del juego", JOptionPane.CLOSED_OPTION);
+                }
+            }
+        }
     }
 
     /**
@@ -217,37 +264,17 @@ public class Juego extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        Juego j = new Juego();
-        j.setVisible(true);
-        dispose();
+        generarTablero();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-        Juegoclase juego = new Juegoclase(Inicio.nivel);
-        String soles = String.valueOf(juego.setSol(50));
-        jTextField1.setText(soles);
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    public int filaAleatoria(int x) {        //Método para filas aleatorias
-        Random rand = new Random();
-        int z = rand.nextInt(x);
-        return z;
+    
+    public void generarTablero(){
+        juego.generarTabla();
     }
-
-    //public void crearObjeto(int fila, int columna){
-    //    jTable1.getCellEditor( fila, columna);   
-    //}
-    //Crear objeto Lanzaguisante o girasol
-    public void crearObjeto(int fila, int columna) {
-        String x = String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()));
-        if ((x == "Z") || (x == "z")) {
-            Girasol girasol = new Girasol();
-        } else if ((x == "L") || (x == "l")) {
-            LanzaGuisantes lanzaGuisante = new LanzaGuisantes();
-        }
-    }
-
     /**
      * @param args the command line arguments
      */

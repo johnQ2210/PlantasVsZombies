@@ -148,6 +148,7 @@ public class Inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //Se debe de poner una excepción, debido a que si no se introduce bien la fila y/o columna, no puede crearse la tabla
@@ -159,7 +160,6 @@ public class Inicio extends javax.swing.JFrame {
             dispose();                //Con este método desaparece la ventana origen
         } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(this, "Introduzca correctamente las filas y columnas correspondientes que desea", "Aviso", JOptionPane.WARNING_MESSAGE);
-
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -192,9 +192,6 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         //Extraemos el texto del jComboBox para el nivel y las características del mismo
         nivel = (String) jComboBox1.getSelectedItem().toString();
-        //Juegoclase juego = new Juegoclase(50);
-        //juego.eleccionNivel(nivel);
-        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
