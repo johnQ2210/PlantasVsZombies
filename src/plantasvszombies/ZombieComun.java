@@ -44,10 +44,12 @@ public class ZombieComun extends Zombie {
     public void setColumn(int column) {
         this.column = column;
     }
-    
-    
-    public void ataqueZombie (Personaje personaje){
+    public void mover(){
         
+    }
+
+    public void ataqueZombie(Personaje personaje){
+        personaje.setVida(-1);
     }
 
     @Override

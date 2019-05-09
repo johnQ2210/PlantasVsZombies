@@ -37,19 +37,18 @@ public class Celda {
     /**
      * Se imprime en la celda.
      */
-    public void comprobarCelda(){
-        String casillaString = " ";
+    public String comprobarCelda(){
         if(this.ocupado){
             if(this.personaje instanceof Girasol){
-                    casillaString = String.format("Zombie", this.personaje.getVida()+1);
+                    return String.format("Zombie", this.personaje.getVida()+1);
             } else if (this.personaje instanceof LanzaGuisantes) {
-                casillaString = String.format("LanzaGuisante", this.personaje.getVida()+1);
+                return String.format("LanzaGuisante", this.personaje.getVida()+1);
             } else if (this.personaje instanceof Girasol) {
-                casillaString = String.format("Girasol", this.personaje.getVida()+1);
-            } else {
-                casillaString = "O()";
+                return String.format("Girasol", this.personaje.getVida()+1);
             }
+            
         }
+        return null;
     }
     
 }

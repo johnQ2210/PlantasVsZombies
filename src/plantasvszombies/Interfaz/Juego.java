@@ -5,6 +5,7 @@
  */
 package plantasvszombies.Interfaz;
 
+import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import plantasvszombies.*;
@@ -18,8 +19,8 @@ public class Juego extends javax.swing.JFrame {
     /**
      * Creates new form Juego
      */
-    
     Juegoclase juego;
+
     public Juego() {
         initComponents();
 
@@ -37,64 +38,18 @@ public class Juego extends javax.swing.JFrame {
 
         //Guardamos como entero el nº de fila que pide el usuario
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();  //Creamos un jTable vacio
-        model.setColumnCount(columna);              //Añadimos las columnas que hemos guardado en la variable "columna"
-        model.setRowCount(filas);                   //Añadimos las filas que hemos guardado en la variable "filas"
+        model.setColumnCount(columna);
+        model.setRowCount(filas);
 
         jTable1.setCellSelectionEnabled(true);      //Seleccionar únicamente la celda, no la fila entera
         jTable1.setSurrendersFocusOnKeystroke(true);//Sea editable la celda con sólo poner una entrada
 
-        String sol = String.valueOf(juego.getSol());
-        String turno = String.valueOf(juego.getTurno());
+        String sol = String.valueOf(juego.getSol());        //Guardamos en una variable los soles que tenemos en el momento
+        String turno = String.valueOf(juego.getTurno());    //Guardamos en una variable el turno en el que estamos
         jTextField1.setText(sol);
         jTextField2.setText(turno);
 
-        boolean play = true;
-        while (play) {
-            boolean salidaZombie = juego.salida_tablero_Zombies(juego.getSalidaZombie(), juego.getTurno());
-            int n_Zombies = juego.zombiesCreados();
-            for (int i = 0; i < n_Zombies; i++) {
-                if (salidaZombie) {
-                    juego.crearZombie();
-                }
-            }
-            boolean turn = true;
-            while (turn) {
-                String x = (String) jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn());
-                switch (x) {
-                    case "g":
-                        juego.colocarGirasol(jTable1.getSelectedRow(), jTable1.getSelectedColumn());
-                        break;
-                    case "l":
-                        juego.colocarLanzaGuisantes(jTable1.getSelectedRow(), jTable1.getSelectedColumn());
-                        break;
-                    default:
-                        JOptionPane.showMessageDialog(this, "Introduzca bien la planta que desee", "Error de entrada", JOptionPane.WARNING_MESSAGE);
-                }
-            }
-            juego.setSol(juego.getGirasoles() * 10);
-            juego.disparoLanzaGuisante();
-            juego.movimientoZombie();
-            juego.setColocarLanzaGuisante(true);
-            juego.setColocarGirasol(true);
-
-            if (juego.getZombies() == juego.getZombiesMuertos()) {
-                if(jButton4.)
-                play = false;
-                JOptionPane.showMessageDialog(this, "¡Felicidades! Han ganado las plantas", "Fin del juego", JOptionPane.CLOSED_OPTION);
-            }
-            if(juego.getZ().size() == 0 && juego.getTurno() > 30){
-                jButton4.addActionListener(this);
-                play = false;
-                JOptionPane.showMessageDialog(this, "Felicidades! Han ganado las plantas", "Fin del juego", JOptionPane.CLOSED_OPTION);
-            }
-            for(ZombieComun z : juego.getZ()){
-                jButton4.addActionListener(this);
-                play = false;
-                if(z.getColumn() == 0){
-                    JOptionPane.showMessageDialog(this, "¡Fallaste! Han ganado los zombies", "Fin del juego", JOptionPane.CLOSED_OPTION);
-                }
-            }
-        }
+        generarPartida(juego);
     }
 
     /**
@@ -264,17 +219,77 @@ public class Juego extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        generarTablero();
+        generarPartida(juego);
+        juego.setTurno(1);
+        String turno_actual = String.valueOf(juego.getTurno());
+        jTextField2.setText(turno_actual);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    
-    public void generarTablero(){
-        juego.generarTabla();
+
+    public void generarPartida(Juegoclase juego) {
+        boolean jugar = (!comprobarPartida(juego));
+        while (jugar) {
+            boolean salidaZombie = juego.salida_tablero_Zombies(juego.getSalidaZombie(), juego.getTurno());
+            int n_Zombies = juego.zombiesCreados();
+            for (int i = 0; i < n_Zombies; i++) {
+                if (salidaZombie) {
+                    juego.crearZombie();
+                }
+            }
+            
+            boolean turn = true;
+            while (turn) {
+                String x = String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()));
+                int cel_fila = jTable1.getSelectedRow();
+                int cel_column = jTable1.getSelectedColumn();
+                switch (x) {
+                    case "g":
+                        juego.colocarGirasol(cel_fila, cel_column);
+                        break;
+                    case "l":
+                        juego.colocarLanzaGuisantes(cel_fila, cel_column);
+                        
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(this, "Introduzca bien la planta que desee", "Error de entrada", JOptionPane.WARNING_MESSAGE);
+                        break;
+                }
+
+            }
+            juego.setSol(juego.getGirasoles() * 10);
+            juego.disparoLanzaGuisante();
+            juego.movimientoZombie();
+            juego.setColocarLanzaGuisante(true);
+            juego.setColocarGirasol(true);
+            
+            if(comprobarPartida(juego)){
+                jugar = false;
+            }
+        }
     }
+
+    public boolean comprobarPartida(Juegoclase juego) {
+        if (juego.getZombies() == juego.getZombiesMuertos()) {
+            JOptionPane.showMessageDialog(this, "¡Felicidades! Han ganado las plantas", "Fin del juego", JOptionPane.CLOSED_OPTION);
+            return false;
+        }
+        if (juego.getZ().size() == 0 && juego.getTurno() > 30) {
+            JOptionPane.showMessageDialog(this, "Felicidades! Han ganado las plantas", "Fin del juego", JOptionPane.CLOSED_OPTION);
+            return false;
+        }
+        for (ZombieComun z : juego.getZ()) {
+            if (z.getColumn() == 0) {
+                JOptionPane.showMessageDialog(this, "¡Fallaste! Han ganado los zombies", "Fin del juego", JOptionPane.CLOSED_OPTION);
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * @param args the command line arguments
      */

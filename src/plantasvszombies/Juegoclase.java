@@ -86,7 +86,10 @@ public class Juegoclase {
         this.turnoZombie = turnoZombie;
     }
     
-    
+    /**
+     * Dependiendo del nivel, el zombie empieza en un turno x o en y
+     * @return 
+     */
     public int turnosZombie() {
         int turno = 0;
         switch (this.nivel) {
@@ -197,9 +200,15 @@ public class Juegoclase {
         this.columnas = columnas;
     }
 
+    /**
+     * Colocamos un girasol en la fila y columna que recibimos
+     * @param fila
+     * @param columna 
+     */
     public void colocarGirasol(int fila, int columna) {
-
+        //Si tenemos suficientes soles, el booleano colocarGirasol es true y no es en la última columna
         if (this.sol >= 20 && this.colocarGirasol && columna != this.columnas - 1) {
+            //Si la celda no está ocupada, creamos un giraol
             if (!this.celdaTablero[fila][columna].isOcupado()) {
                 Girasol g = new Girasol();
                 this.celdaTablero[fila][columna].setOcupado(true);
@@ -208,13 +217,19 @@ public class Juegoclase {
                 this.Girasoles += 1;
                 this.colocarGirasol = false;
                 aparecerZombies();
-                this.generarTabla();
             }
         }
     }
     
+    /**
+     * Colocamos el Lanzaguisantes en la fila y columna donde nos indica
+     * @param fila
+     * @param columna 
+     */
     public void colocarLanzaGuisantes(int fila, int columna) {
+        //Si tenemos suficientes soles para colocar esta planta, si se puede colocar la planta y si no está en la última columna
         if (this.sol >= 50 && this.colocarLanzaGuisante && columna != this.columnas - 1) {
+            //Si la celda no está ocupada, creamos un lanzaguisantes
             if (!this.celdaTablero[fila][columna].isOcupado()) {
                 LanzaGuisantes lanzaguisante = new LanzaGuisantes(fila);
                 this.celdaTablero[fila][columna].setOcupado(true);
@@ -222,23 +237,29 @@ public class Juegoclase {
                 this.sol -= 50;
                 this.l.add(lanzaguisante);
                 this.colocarLanzaGuisante = false;
-                this.generarTabla();
             }
         }
     }
 
-    
+    /**
+     * Método para cuando un lanzaguisantes se encuentre en la misma fila que un zombie, y dispare
+     */
     public void disparoLanzaGuisante() {
+        //Buscamos un lanzaguisantes en el array de este
         for (LanzaGuisantes lanzaguisante : this.l) {
             int fila = lanzaguisante.getFila();
             boolean x = false;
             int maximo = this.columnas - 1;
             int columna = 0;
+            //Cuando sea el booleano para true para revisar la columna y no sea ésta el máximo
             while (!x && columna < maximo) {
+                //Buscamos si es algún zombie
                 if (this.celdaTablero[fila][columna].isOcupado() & this.celdaTablero[fila][columna].getPersonaje() instanceof Zombie) {
+                    //Si la vida del Zombie es mayor que 0, le restamos 1 a la vida
                     if (this.celdaTablero[fila][columna].getPersonaje().getVida() > 0) {
                         this.celdaTablero[fila][columna].getPersonaje().setVida(-1);
                     } else {
+                        //Si el zombie tiene 0 vidas, lo eliminamos de la celda
                         this.z.remove(this.celdaTablero[fila][columna].getPersonaje());
                         this.zombiesMuertos += 1;
                         this.celdaTablero[fila][columna].setOcupado(false);
@@ -252,11 +273,15 @@ public class Juegoclase {
         }
     }
 
+    /**
+     * Creamos los zombies en cualquier fila del tablero, pero en la última columna
+     */
     public void crearZombie() {
         int fila = (int) (Math.random() * (this.filas));
         int i = 0;
         while (i < this.filas) {
-            if (!this.celdaTablero[fila][this.columnas - 1].isOcupado()) {
+            //Si la celda está no está ocupada, creamos un zombie
+            if (!this.celdaTablero[fila][this.columnas - 1].isOcupado()) {          
                 boolean moverse = false;
                 if (this.turno % 2 == 0) {
                     moverse = true;
@@ -295,6 +320,9 @@ public class Juegoclase {
         this.celdaTablero = celdaTablero;
     }
 
+    /**
+     * Se hace un aleatorio de turno para que salga un zombie
+     */
     public void aparecerZombies() {
         this.salidaZombie = new int[this.Zombies];
         for (int i = 0; i < this.Zombies; i++) {
@@ -303,6 +331,12 @@ public class Juegoclase {
         }
     }
 
+    /**
+     * Si el turno que está actual, es un turno en el quen el zombie sale, aparece un zombie en el tablero
+     * @param salidaZombie
+     * @param turno
+     * @return 
+     */
     public boolean salida_tablero_Zombies(int[] salidaZombie, int turno) {
         boolean saleZombie = false;
         for (int i : salidaZombie) {
@@ -313,6 +347,10 @@ public class Juegoclase {
         return saleZombie;
     }
 
+    /**
+     * Contador de zombies creados
+     * @return 
+     */
     public int zombiesCreados() {
         int zombies = 0;
         for (int i : this.salidaZombie) {
@@ -323,22 +361,32 @@ public class Juegoclase {
         return zombies;
     }
 
+    /**
+     * Método para que se mueva el zombie por el tablero
+     */
     public void movimientoZombie() {
+        
         if (this.z.size() >= 1) {
-            for (ZombieComun z : this.z) {
-                int fila = z.getFila();
-                int column = z.getColumn();
-                if (z.isMoverse() == (this.turno % 2 == 0)) {
+            //Recorremos el array zombies con el objeto Zombie
+            for (ZombieComun zombie : this.z) {
+                int fila = zombie.getFila();
+                int column = zombie.getColumn();
+                //Si el zombie puede moverse y el turno es es divisible entre dos
+                if (zombie.isMoverse() == (this.turno % 2 == 0)) {
+                    //Si la celda de la columna de delante del zombie está libre, avanza 
                     if (!this.celdaTablero[fila][column - 1].isOcupado()) {
                         this.celdaTablero[fila][column - 1].setOcupado(true);
-                        this.celdaTablero[fila][column - 1].setPersonaje(z);
+                        this.celdaTablero[fila][column - 1].setPersonaje(zombie);
                         this.celdaTablero[fila][column - 1].setOcupado(false);
-                        z.setColumn(column - 1);
+                        zombie.setColumn(column - 1);
                     } else if (this.celdaTablero[fila][column - 1].getPersonaje() instanceof Personaje) {
-                        z.ataqueZombie(this.celdaTablero[fila][column - 1].getPersonaje());
+                        //Si la celda está ocupada por un personaje y no es un zombie,prepara el ataque el zombie a este.
+                        zombie.ataqueZombie(this.celdaTablero[fila][column - 1].getPersonaje());
                     }
                 } else if (this.celdaTablero[fila][column - 1].isOcupado() & this.celdaTablero[fila][column - 1].getPersonaje() instanceof Planta) {
-                    z.ataqueZombie(this.celdaTablero[fila][column - 1].getPersonaje());
+                    //Si la celda de la columna de delante NO está libre, y es una planta, procede a atacar
+                    zombie.ataqueZombie(this.celdaTablero[fila][column - 1].getPersonaje());
+                    //Si la planta al atacar tiene menos de 0 vida, se elimina del tablero
                     if (this.celdaTablero[fila][column - 1].getPersonaje().getVida() <= 0) {
                         if (this.celdaTablero[fila][column - 1].getPersonaje() instanceof LanzaGuisantes) {
                             this.l.remove(this.celdaTablero[fila][column - 1].getPersonaje());
@@ -346,14 +394,6 @@ public class Juegoclase {
                     }
                     this.celdaTablero[fila][column - 1].setOcupado(false);
                 }
-            }
-        }
-    }
-
-    public void generarTabla() {
-        for (int i = 0; i <= this.filas; i++) {
-            for (int j = 0; j <= columnas; j++) {
-                this.celdaTablero[i][j].toString();
             }
         }
     }

@@ -9,7 +9,7 @@ package plantasvszombies;
  *
  * @author juniorchunga
  */
-public class LanzaGuisantes extends Planta {
+public class LanzaGuisantes extends Planta implements Plantasinterface{
 
     private int alcance;
     private int fila;
@@ -35,7 +35,7 @@ public class LanzaGuisantes extends Planta {
     public void setAlcance(int alcance) {
         this.alcance = alcance;
     }
-    public void accion(Zombie zombie){
+    public void accion(ZombieComun zombie){
         zombie.setVida(-1);
     }
 

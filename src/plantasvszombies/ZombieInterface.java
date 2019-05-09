@@ -9,14 +9,8 @@ package plantasvszombies;
  *
  * @author juniorchunga
  */
-public class Girasol extends Planta implements Plantasinterface {
-
-
-    public Girasol() {
-        super(1, 20, 0, 0);
-    }
-    public void accion(ZombieComun zombie){
-        
-    }
+public interface ZombieInterface {
+    public void mover();
     
+    public void ataqueZombie(Personaje personaje);
 }
