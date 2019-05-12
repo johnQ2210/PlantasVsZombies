@@ -28,6 +28,7 @@ public class Juegoclase {
     private int turnoZombie;
     private int filas;
     private int columnas;
+    Celda [][] personaje = new Celda [this.filas][this.columnas];
 
     private boolean colocarGirasol;
     private boolean colocarLanzaGuisante;
@@ -320,6 +321,15 @@ public class Juegoclase {
         this.celdaTablero = celdaTablero;
     }
 
+    public Celda[][] getPersonaje() {
+        return personaje;
+    }
+
+    public void setPersonaje(Celda[][] personaje) {
+        this.personaje = personaje;
+    }
+    
+
     /**
      * Se hace un aleatorio de turno para que salga un zombie
      */
@@ -396,5 +406,28 @@ public class Juegoclase {
                 }
             }
         }
+    }
+    public Celda[][] generarTablero(){
+        boolean saleZombie = this.salida_tablero_Zombies(this.salidaZombie, this.turno);
+        int numero_de_zombies = this.Zombiescreados;
+        for(int k = 0; k<numero_de_zombies; k++){
+            if(saleZombie){
+                this.crearZombie();
+            }
+        }
+        
+        this.setSol(this.getGirasoles()*10);
+        this.disparoLanzaGuisante();
+        this.movimientoZombie();
+        this.setColocarGirasol(true);
+        this.setColocarLanzaGuisante(true);
+      
+        for(int i = 0; i < this.filas; i++){
+            for(int j = 0; j<this.columnas; j++){
+                personaje[i][j] = this.celdaTablero[i][j];
+            }
+        }
+        return personaje;
+        
     }
 }

@@ -27,10 +27,6 @@ public class PruebaJuego {
 
         Juegoclase juego = new Juegoclase(fila, columna, dificultad);
 
-        System.out.println(juego.getColumnas());
-        System.out.println(juego.getFilas());
-        System.out.println(juego.getNivel());
-
         boolean play = true;
         while (play) {
             boolean salidaZombie = juego.salida_tablero_Zombies(juego.getSalidaZombie(), juego.getTurno());
@@ -41,7 +37,6 @@ public class PruebaJuego {
                 }
             }
             
-            System.out.println(juego.getZombies());
             
             boolean turn = true;
             while (turn) {
@@ -58,7 +53,6 @@ public class PruebaJuego {
 
                 try {
                     switch (letra) {
-
                         case "g":
                             juego.colocarGirasol(fil, column);
                             juego.setTurno(1);
@@ -77,7 +71,6 @@ public class PruebaJuego {
                     }catch (ArrayIndexOutOfBoundsException e) {
                                 System.out.println(e);
                             }
-
                 }
                 juego.setSol(juego.getGirasoles() * 10);
                 juego.disparoLanzaGuisante();

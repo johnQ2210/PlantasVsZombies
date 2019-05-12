@@ -10,12 +10,13 @@ package plantasvszombies;
  * @author juniorchunga
  */
 public class Celda {
+
     private boolean ocupado;
     private Personaje personaje;
 
     public Celda() {
         this.ocupado = ocupado;
-        
+
     }
 
     public boolean isOcupado() {
@@ -33,22 +34,25 @@ public class Celda {
     public void setPersonaje(Personaje personaje) {
         this.personaje = personaje;
     }
-    
+
     /**
      * Se imprime en la celda.
+     *
+     * @return
      */
-    public String comprobarCelda(){
-        if(this.ocupado){
-            if(this.personaje instanceof Girasol){
-                    return String.format("Zombie", this.personaje.getVida()+1);
-            } else if (this.personaje instanceof LanzaGuisantes) {
-                return String.format("LanzaGuisante", this.personaje.getVida()+1);
-            } else if (this.personaje instanceof Girasol) {
-                return String.format("Girasol", this.personaje.getVida()+1);
-            }
-            
-        }
-        return null;
-    }
     
+    @Override
+    public String toString() {
+        String celda = " ";
+        if (this.ocupado) {
+            if (this.personaje instanceof ZombieComun) {
+                celda = String.format("Zombie", this.personaje.getVida() + 1);
+            } else if (this.personaje instanceof LanzaGuisantes) {
+                celda = String.format("LanzaGuisante", this.personaje.getVida() + 1);
+            } else if (this.personaje instanceof Girasol) {
+                celda = String.format("Girasol", this.personaje.getVida() + 1);
+            }
+        }
+        return celda;
+    }
 }

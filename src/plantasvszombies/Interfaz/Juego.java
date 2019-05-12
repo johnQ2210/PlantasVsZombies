@@ -49,7 +49,6 @@ public class Juego extends javax.swing.JFrame {
         jTextField1.setText(sol);
         jTextField2.setText(turno);
 
-        generarPartida(juego);
     }
 
     /**
@@ -71,6 +70,7 @@ public class Juego extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,7 +114,7 @@ public class Juego extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Siguiente Turno");
+        jButton4.setText("Girasol");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -124,6 +124,13 @@ public class Juego extends javax.swing.JFrame {
         jLabel2.setText("Turno:");
 
         jTextField2.setEditable(false);
+
+        jButton5.setText("Lanzaguisante");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,11 +159,16 @@ public class Juego extends javax.swing.JFrame {
                         .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4))
-                .addGap(82, 82, 82))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addGap(99, 99, 99))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5)
+                        .addGap(22, 22, 22))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,7 +184,8 @@ public class Juego extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -219,58 +232,24 @@ public class Juego extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        generarPartida(juego);
-        juego.setTurno(1);
-        String turno_actual = String.valueOf(juego.getTurno());
-        jTextField2.setText(turno_actual);
+        int fil = jTable1.getSelectedRow();
+        int colu = jTable1.getSelectedColumn();
+        juego.colocarGirasol(fil, colu);
+        generarObjeto();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        int fil = jTable1.getSelectedRow();
+        int colu = jTable1.getSelectedColumn();
+        juego.colocarLanzaGuisantes(fil, colu);
+        generarObjeto();
 
-    public void generarPartida(Juegoclase juego) {
-        boolean jugar = (!comprobarPartida(juego));
-        while (jugar) {
-            boolean salidaZombie = juego.salida_tablero_Zombies(juego.getSalidaZombie(), juego.getTurno());
-            int n_Zombies = juego.zombiesCreados();
-            for (int i = 0; i < n_Zombies; i++) {
-                if (salidaZombie) {
-                    juego.crearZombie();
-                }
-            }
-            
-            boolean turn = true;
-            while (turn) {
-                String x = String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()));
-                int cel_fila = jTable1.getSelectedRow();
-                int cel_column = jTable1.getSelectedColumn();
-                switch (x) {
-                    case "g":
-                        juego.colocarGirasol(cel_fila, cel_column);
-                        break;
-                    case "l":
-                        juego.colocarLanzaGuisantes(cel_fila, cel_column);
-                        
-                        break;
-                    default:
-                        JOptionPane.showMessageDialog(this, "Introduzca bien la planta que desee", "Error de entrada", JOptionPane.WARNING_MESSAGE);
-                        break;
-                }
-
-            }
-            juego.setSol(juego.getGirasoles() * 10);
-            juego.disparoLanzaGuisante();
-            juego.movimientoZombie();
-            juego.setColocarLanzaGuisante(true);
-            juego.setColocarGirasol(true);
-            
-            if(comprobarPartida(juego)){
-                jugar = false;
-            }
-        }
-    }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     public boolean comprobarPartida(Juegoclase juego) {
         if (juego.getZombies() == juego.getZombiesMuertos()) {
@@ -288,6 +267,32 @@ public class Juego extends javax.swing.JFrame {
             }
         }
         return true;
+    }
+
+    public void generarObjeto() {
+        Celda[][] personaje = new Celda[jTable1.getRowCount()][jTable1.getColumnCount()];
+        personaje = juego.generarTablero();
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            for (int j = 0; j < jTable1.getColumnCount(); j++) {
+                try {
+                    if (personaje[i][j] == null) {
+                        System.out.print(" ");
+                    } else {
+                        if (personaje[i][j].getPersonaje() instanceof Girasol) {
+                            System.out.println(personaje[i][j].toString());
+                        } else if (personaje[i][j].getPersonaje() instanceof LanzaGuisantes) {
+                            System.out.print(personaje[i][j].toString());
+                        } else if (personaje[i][j].getPersonaje() instanceof ZombieComun) {
+                            System.out.print(personaje[i][j].toString());
+                        }
+                    } 
+                } catch (NullPointerException nl) {
+                    System.out.println(" ");
+                }
+                jTable1.setValueAt(personaje, i, j);
+            }
+        }
+
     }
 
     /**
@@ -330,6 +335,7 @@ public class Juego extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

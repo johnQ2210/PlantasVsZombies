@@ -5,6 +5,8 @@
  */
 package plantasvszombies;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author juniorchunga
@@ -12,10 +14,10 @@ package plantasvszombies;
 public class Personaje {
     private int vida;
 
-    public Personaje(int vida) {
+    public Personaje(int vida){
         this.vida = vida;
     }
-
+    
     public int getVida() {
         return vida;
     }
@@ -23,4 +25,5 @@ public class Personaje {
     public void setVida(int vida) {
         this.vida += vida;
     }
+    
 }
