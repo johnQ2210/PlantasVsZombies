@@ -6,7 +6,6 @@
 package plantasvszombies.Interfaz;
 
 import javax.swing.JOptionPane;
-import plantasvszombies.Juegoclase;
 
 /**
  *
@@ -25,7 +24,7 @@ public class Inicio extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);        //Centramos la ventana
         setResizable(false);                //Hacemos que no se máximice
-        setTitle("Inicio");                 //Ponemos título a la ventana
+        setTitle("Crear Partida");                 //Ponemos título a la ventana
     }
 
     /**

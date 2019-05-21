@@ -251,7 +251,7 @@ public class Juego extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    public boolean comprobarPartida(Juegoclase juego) {
+    public boolean comprobarPartida() {
         if (juego.getZombies() == juego.getZombiesMuertos()) {
             JOptionPane.showMessageDialog(this, "¡Felicidades! Han ganado las plantas", "Fin del juego", JOptionPane.CLOSED_OPTION);
             return false;
@@ -292,6 +292,7 @@ public class Juego extends javax.swing.JFrame {
                 jTable1.setValueAt(personaje, i, j);
             }
         }
+        comprobarPartida();
 
     }
 

@@ -3,15 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package excepciones;
+package plantasvszombies;
 
 /**
  *
  * @author juniorchunga
  */
-public class ExcepcionJuego extends Exception{
-    public static String NIVEL_INEXISTENTE = "EL ";
-    public ExcepcionJuego(){
-        super("No");
+public abstract class Nuez extends Planta implements Plantasinterface{
+    
+    public Nuez(){
+        super(10,50,0,0);
+    }
+    public void accion(ZombieComun zombie){
+        
     }
 }
