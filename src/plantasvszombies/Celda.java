@@ -51,6 +51,10 @@ public class Celda {
                 celda = String.format("LanzaGuisante", this.personaje.getVida() + 1);
             } else if (this.personaje instanceof Girasol) {
                 celda = String.format("Girasol", this.personaje.getVida() + 1);
+            } else if (this.personaje instanceof Nuez){
+                celda = String.format("Nuez", this.personaje.getVida() + 1);
+            } else if (this.personaje instanceof ZombieCaracubo){
+                celda = String.format("ZCubo", this.personaje.getVida() + 1);
             }
         }
         return celda;

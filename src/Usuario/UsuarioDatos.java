@@ -14,10 +14,7 @@ public class UsuarioDatos {
     private String dni;
     private int puntos;
 
-    public UsuarioDatos(String nombre, String dni) {
-        this.nombre = nombre;
-        this.dni = dni;
-        this.puntos = puntos;
+    public UsuarioDatos() {
     }
 
     public String getNombre() {

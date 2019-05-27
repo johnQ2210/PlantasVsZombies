@@ -93,21 +93,21 @@ public class RegistroUsuario extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try{
+            String dni = jTextField1.getText();
+            String nombre = jTextField2.getText();
+            crearUsuario(dni, nombre);
             InterfazUsuario interfaz = new InterfazUsuario();
             interfaz.setVisible(true);
             dispose();
-        } catch (Exception e){
+        } catch (NumberFormatException e){
             JOptionPane.showMessageDialog(this, "No se han introducido los datos correctamente", "Error de Registro", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void crearUsuario(){
-        String dni = jTextField1.getText();
-        String nombre = jTextField2.getText();
-        UsuarioDatos usuario = new UsuarioDatos(nombre, dni);
-        AlmacenajeUsuarios almacena = new AlmacenajeUsuarios();
-        almacena.añadirUsuario(usuario);
-        
+    public void crearUsuario(String dni, String nombre){
+        UsuarioDatos usuario = new UsuarioDatos();
+        AlmacenajeUsuarios almacena = new AlmacenajeUsuarios(dni);
+        almacena.guardarUsuario(dni,nombre);
     }
     
     

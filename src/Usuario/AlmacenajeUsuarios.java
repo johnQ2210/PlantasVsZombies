@@ -5,6 +5,10 @@
  */
 package Usuario;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 
 /**
@@ -12,23 +16,70 @@ import java.util.HashMap;
  * @author juniorchunga
  */
 public class AlmacenajeUsuarios {
-    HashMap lista = new HashMap();
-    private UsuarioDatos usuario;
+    HashMap<String, String> lista = new HashMap<String, String>();
+    private String codigoDni;
+    private String nombreUsuario;
 
-    public AlmacenajeUsuarios() {
-        this.usuario = usuario;
+    public AlmacenajeUsuarios(String codigoDni) {
+        this.codigoDni = codigoDni;
+        this.nombreUsuario = nombreUsuario;
     }
-    
-    public void añadirUsuario(UsuarioDatos u){
-        if(lista.containsValue(u)){
-            
-        }else {
-            lista.put(usuario.getDni(), u);
+
+    public HashMap<String, String> getLista() {
+        return lista;
+    }
+
+    public void setLista(HashMap<String, String> lista) {
+        this.lista = lista;
+    }
+
+    public String getCodigoDni() {
+        return codigoDni;
+    }
+
+    public void setCodigoDni(String codigoDni) {
+        this.codigoDni = codigoDni;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public void guardarUsuario(String codigo, String usuario){
+        if(lista.containsKey(codigo)){
+            System.out.println("El usuario ya está registrado. No se puede volver a registrar.");
+        } else {
+            lista.put(codigo, usuario);
         }
     }
-    public boolean comprobarUsuario (String dni){
-        if(lista.containsKey(dni)){
+    
+    public void borrarUsuario(String codigo, String usuario){
+        if(lista.containsKey(codigo)){
+            lista.remove(codigo);
+        } else{
+            System.out.println("No existe éste usuario.");
+        }
+    }
+    public boolean comprobarUsuario(String codigo){
+        if(lista.containsKey(codigo)){
+            return true;
+        } else {
             return false;
-        } else return true;
+        }
+    }
+    
+    public static void generaFicha(UsuarioDatos u) throws IOException{
+        PrintWriter salida = new PrintWriter(new BufferedWriter(new FileWriter("Ranking jugadores.txt")));
+        salida.println("-----------------------Ranking jugadores------------------------");
+        salida.println("\n");
+        salida.println(u.toString());
+        salida.println("\n");
+        salida.println("----------------------------------------------------------------");
+        salida.close();
+        
     }
 }

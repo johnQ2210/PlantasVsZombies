@@ -9,7 +9,7 @@ package plantasvszombies;
  *
  * @author juniorchunga
  */
-public abstract class Nuez extends Planta implements Plantasinterface{
+public class Nuez extends Planta implements Plantasinterface{
     
     public Nuez(){
         super(10,50,0,0);

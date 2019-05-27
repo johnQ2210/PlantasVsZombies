@@ -16,6 +16,8 @@ public class Juegoclase {
 
     private ArrayList<LanzaGuisantes> l;
     private ArrayList<ZombieComun> z;
+    private ArrayList<Nuez> n;
+    private ArrayList<ZombieCaracubo> zc;
     private int sol;
     private String nivel;
     private int turno;
@@ -32,6 +34,7 @@ public class Juegoclase {
 
     private boolean colocarGirasol;
     private boolean colocarLanzaGuisante;
+    private boolean colocarNuez;
 
     public Juegoclase(int filas, int columnas, String nivel) {
         this.filas = filas;
@@ -41,9 +44,12 @@ public class Juegoclase {
         this.turno = 0;
         this.colocarGirasol = true;
         this.colocarLanzaGuisante = true;
+        this.colocarNuez = true;
         this.Zombies = this.nivel_zombies();
         this.z = new ArrayList<ZombieComun>();
         this.l = new ArrayList<LanzaGuisantes>();
+        this.n = new ArrayList<Nuez>();
+        this.zc = new ArrayList<ZombieCaracubo>();
         this.Girasoles = 0;
         this.turnoZombie = this.turnoZombie;
         this.aparecerZombies();
@@ -169,6 +175,23 @@ public class Juegoclase {
         this.z = z;
     }
 
+    public ArrayList<Nuez> getN() {
+        return n;
+    }
+
+    public void setN(ArrayList<Nuez> n) {
+        this.n = n;
+    }
+
+    public ArrayList<ZombieCaracubo> getZc() {
+        return zc;
+    }
+
+    public void setZc(ArrayList<ZombieCaracubo> zc) {
+        this.zc = zc;
+    }
+
+    
     public int getZombies() {
         return Zombies;
     }
@@ -238,6 +261,19 @@ public class Juegoclase {
                 this.sol -= 50;
                 this.l.add(lanzaguisante);
                 this.colocarLanzaGuisante = false;
+            }
+        }
+    }
+    
+    public void colocarNuez(int fila, int columna){
+        if(this.sol>=10 && this.colocarNuez && columna != this.columnas -1){
+            if(!this.celdaTablero[fila][columna].isOcupado()){
+                Nuez nuez = new Nuez();
+                this.celdaTablero[fila][columna].setOcupado(true);
+                this.celdaTablero[fila][columna].setPersonaje(nuez);
+                this.sol= -10;
+                this.n.add(nuez);
+                this.colocarNuez = false;
             }
         }
     }
@@ -313,6 +349,15 @@ public class Juegoclase {
         this.colocarLanzaGuisante = colocarLanzaGuisante;
     }
 
+    public boolean isColocarNuez() {
+        return colocarNuez;
+    }
+
+    public void setColocarNuez(boolean colocarNuez) {
+        this.colocarNuez = colocarNuez;
+    }
+    
+
     public Celda[][] getCeldaTablero() {
         return celdaTablero;
     }
@@ -375,7 +420,6 @@ public class Juegoclase {
      * Método para que se mueva el zombie por el tablero
      */
     public void movimientoZombie() {
-        
         if (this.z.size() >= 1) {
             //Recorremos el array zombies con el objeto Zombie
             for (ZombieComun zombie : this.z) {
@@ -428,6 +472,5 @@ public class Juegoclase {
             }
         }
         return personaje;
-        
     }
 }
