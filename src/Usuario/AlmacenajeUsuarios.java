@@ -16,20 +16,20 @@ import java.util.HashMap;
  * @author juniorchunga
  */
 public class AlmacenajeUsuarios {
-    HashMap<String, String> lista = new HashMap<String, String>();
+    HashMap<Object, Object> lista = new HashMap<Object, Object>();
     private String codigoDni;
     private String nombreUsuario;
 
-    public AlmacenajeUsuarios(String codigoDni) {
+    public AlmacenajeUsuarios() {
         this.codigoDni = codigoDni;
         this.nombreUsuario = nombreUsuario;
     }
 
-    public HashMap<String, String> getLista() {
+    public HashMap<Object, Object> getLista() {
         return lista;
     }
 
-    public void setLista(HashMap<String, String> lista) {
+    public void setLista(HashMap<Object, Object> lista) {
         this.lista = lista;
     }
 
@@ -49,29 +49,32 @@ public class AlmacenajeUsuarios {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public void guardarUsuario(String codigo, String usuario){
-        if(lista.containsKey(codigo)){
+    //Guardar el usuario dentro del HashMap
+    public void guardarUsuario(UsuarioDatos us){
+        if(lista.containsKey(us.getDni())){
             System.out.println("El usuario ya está registrado. No se puede volver a registrar.");
         } else {
-            lista.put(codigo, usuario);
+            lista.put(us.getDni(), us);
         }
     }
     
-    public void borrarUsuario(String codigo, String usuario){
-        if(lista.containsKey(codigo)){
-            lista.remove(codigo);
+    public void borrarUsuario(UsuarioDatos us){
+        if(lista.containsKey(us.getDni())){
+            lista.remove(us);
         } else{
             System.out.println("No existe éste usuario.");
         }
     }
-    public boolean comprobarUsuario(String codigo){
-        if(lista.containsKey(codigo)){
+    //Devolvemos un booleano, si el usuario está o no dentro del HashMap
+    public boolean comprobarUsuario(String dni){
+        if(lista.containsKey(dni)){
             return true;
         } else {
             return false;
         }
     }
     
+    //Para generar el fichero
     public static void generaFicha(UsuarioDatos u) throws IOException{
         PrintWriter salida = new PrintWriter(new BufferedWriter(new FileWriter("Ranking jugadores.txt")));
         salida.println("-----------------------Ranking jugadores------------------------");

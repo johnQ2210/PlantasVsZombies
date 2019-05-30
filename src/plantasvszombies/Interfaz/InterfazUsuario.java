@@ -12,6 +12,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,7 +23,14 @@ public class InterfazUsuario extends javax.swing.JFrame {
     /**
      * Creates new form RegistroUsuario
      */
+    
+    
+    private AlmacenajeUsuarios almacen;
+    
     public InterfazUsuario() {
+        
+        this.almacen = new AlmacenajeUsuarios();
+        
         initComponents();
         setLocationRelativeTo(null);        //Centramos la ventana
         setResizable(false);                //Hacemos que no se máximice
@@ -119,40 +127,50 @@ public class InterfazUsuario extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        RegistroUsuario rg = new RegistroUsuario();
-        rg.setVisible(true);
-        dispose();
+        //Nos envía a la venta de registro de usuario
+        RegistroUsuario registro = new RegistroUsuario(this, almacen);
+        registro.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        AlmacenajeUsuarios almacena = new AlmacenajeUsuarios(jTextField1.getText());
-        try{
-            while(almacena.comprobarUsuario(jTextField1.getText())){
-                Inicio in = new Inicio();
-                in.setVisible(true);
-                dispose();
-            }
-        } catch ( NumberFormatException e){
-            JOptionPane.showMessageDialog(this, "No se ha encontrado al usuario correspondiente con el DNI", "DNI Erroneo", JOptionPane.WARNING_MESSAGE);
+        //Comprobando si existe el usuario
+        String dni = jTextField1.getText();
+        //Si existe, se inicia el juego
+        if (almacen.comprobarUsuario(dni)) {
+            Inicio in = new Inicio();
+            in.setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "No existe el usuario", "Error de inicio", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        //Comprobando el dni
+        String[] columNames = {"Dni", "Nombre","Puntos","Dificultad","Partidas"};
+        JTable tabla = new JTable();
+        DefaultTableModel ranking = (DefaultTableModel)tabla.getModel();
+        ranking.addColumn(columNames);
+        for(int i = 0; i <= almacen.getLista().size();i++){
+            UsuarioDatos usuarios = new UsuarioDatos();
+            ranking.setValueAt(usuarios.getDni(), i, 0);
+            ranking.setValueAt(usuarios.getNombre(), i, 1);
+            ranking.setValueAt(usuarios.getPuntos(), i, 2);
+        }
+        /**
         String dni = jTextField1.getText();
         try{
-            UsuarioDatos usuario = new UsuarioDatos();
-            AlmacenajeUsuarios u = new AlmacenajeUsuarios(dni);
-            while(u.comprobarUsuario(dni)){
-                AlmacenajeUsuarios.generaFicha(usuario);
+            while(almacen.comprobarUsuario(dni)){
+                //AlmacenajeUsuarios.generaFicha(usuario);
                 JOptionPane.showMessageDialog(this, "Ficha de la persona generada: " + usuario.getDni() + ".txt","Mensaje", JOptionPane.INFORMATION_MESSAGE);
             }
-            
-        } catch (IOException e){
+        } catch (HeadlessException | IOException e){
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Mensaje", JOptionPane.ERROR_MESSAGE);
             System.out.println("Error: " + e.toString());
         }
+        **/
     }//GEN-LAST:event_jButton3ActionPerformed
     
     /**

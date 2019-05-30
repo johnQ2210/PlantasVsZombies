@@ -5,16 +5,21 @@
  */
 package Usuario;
 
+import java.io.Serializable;
+
 /**
  *
  * @author juniorchunga
  */
-public class UsuarioDatos {
+public class UsuarioDatos implements Serializable{
     private String nombre;
     private String dni;
     private int puntos;
 
     public UsuarioDatos() {
+        this.nombre = nombre;
+        this.dni = dni;
+        this.puntos = puntos;
     }
 
     public String getNombre() {
