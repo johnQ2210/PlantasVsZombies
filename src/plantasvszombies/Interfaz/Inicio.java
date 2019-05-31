@@ -23,6 +23,7 @@ public class Inicio extends javax.swing.JFrame {
     public static String t = "";
     public static String x = "";
     public static String nivel = "";
+    
     private InterfazUsuario interfaz1;
     
     public Inicio(InterfazUsuario interfaz1) {
@@ -163,7 +164,7 @@ public class Inicio extends javax.swing.JFrame {
         try {
             t = jTextField1.getText();
             x = jTextField2.getText();
-            Juego obj = new Juego();  //Creamos el objeto de la vista que queremos acceder
+            Juego obj = new Juego(this);  //Creamos el objeto de la vista que queremos acceder
             obj.setVisible(true);     //Hacemos que sea visible el objeto
             dispose();                //Con este método desaparece la ventana origen
         } catch (NumberFormatException nfe) {

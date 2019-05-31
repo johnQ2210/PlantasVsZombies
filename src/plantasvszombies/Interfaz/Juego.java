@@ -19,14 +19,16 @@ public class Juego extends javax.swing.JFrame {
     /**
      * Creates new form Juego
      */
-    private InterfazUsuario interfaz;
+    private Inicio inicio;
     Juegoclase juego;
 
-    public Juego() {
+    public Juego(Inicio inicio) {
+        this.inicio = inicio;
+        inicio.setVisible(false);
+        
         initComponents();
 
         //Creamos los objetos que necesitamos para el juego
-        //Inicio ini1 = new Inicio();     //Ventana principal
         int columna = Integer.parseInt(Inicio.t);   //Guardamos como entero el nº de columna que pide el usuario
         int filas = Integer.parseInt(Inicio.x);     //Guardamos como entero el nº de fila que pide el usuario
         String nivel = Inicio.nivel;                //Guardamos el nivel que pide el usuario
@@ -211,9 +213,9 @@ public class Juego extends javax.swing.JFrame {
         //Se realiza una ventana de comprobación para que el usuario confirme la acción
         int n = JOptionPane.showConfirmDialog(this, "¿Seguro que quiere volver?", "Salir del juego", JOptionPane.YES_NO_OPTION);
         if (n == JOptionPane.YES_OPTION) {
-            //Inicio ini1 = new Inicio();     //Creamos el objeto Inicio, que pertenece a la otra vista
-            //ini1.setVisible(true);          //Lo hacemos visible
-            dispose();                      //Desaparece la vista origen en la que estábamos
+            this.setVisible(false);
+            inicio.setVisible(true);
+            
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
