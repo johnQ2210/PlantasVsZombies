@@ -5,26 +5,35 @@
  */
 package plantasvszombies.Interfaz;
 
+import Usuario.UsuarioDatos;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author juniorchunga
  */
+
 public class Inicio extends javax.swing.JFrame {
 
     /**
      * Creates new form Inicio
      */
+    
+    
     public static String t = "";
     public static String x = "";
     public static String nivel = "";
-
-    public Inicio() {
+    private InterfazUsuario interfaz1;
+    
+    public Inicio(InterfazUsuario interfaz1) {
+        this.interfaz1 = interfaz1;
+        
+        
+        interfaz1.setVisible(false);
         initComponents();
         setLocationRelativeTo(null);        //Centramos la ventana
         setResizable(false);                //Hacemos que no se máximice
-        setTitle("Crear Partida");                 //Ponemos título a la ventana
+        setTitle("Bienvenido al juego");                 //Ponemos título a la ventana
     }
 
     /**
@@ -172,7 +181,8 @@ public class Inicio extends javax.swing.JFrame {
         int n = JOptionPane.showConfirmDialog(this, "¿Seguro que desea salir?", "Cerrar juego", JOptionPane.YES_NO_OPTION);
         if (n == JOptionPane.YES_OPTION) {
             if (evt.getSource() == jButton2) {
-                System.exit(0);             //Al pinchar salir, no volvemos a la vista Inicio, sino que 
+                this.setVisible(false);             //Al pinchar salir, no volvemos a la vista Inicio, sino que 
+                interfaz1.setVisible(true);
                 //acaba el programa.
             }
         }

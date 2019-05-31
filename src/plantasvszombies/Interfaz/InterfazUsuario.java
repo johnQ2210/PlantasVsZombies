@@ -138,9 +138,8 @@ public class InterfazUsuario extends javax.swing.JFrame {
         String dni = jTextField1.getText();
         //Si existe, se inicia el juego
         if (almacen.comprobarUsuario(dni)) {
-            Inicio in = new Inicio();
+            Inicio in = new Inicio(this);
             in.setVisible(true);
-            dispose();
         } else {
             JOptionPane.showMessageDialog(this, "No existe el usuario", "Error de inicio", JOptionPane.INFORMATION_MESSAGE);
         }
