@@ -7,10 +7,6 @@ package plantasvszombies.Interfaz;
 
 import javax.swing.JOptionPane;
 import Usuario.*;
-import java.awt.HeadlessException;
-import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
