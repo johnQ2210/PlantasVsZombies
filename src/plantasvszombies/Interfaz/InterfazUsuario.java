@@ -23,8 +23,6 @@ public class InterfazUsuario extends javax.swing.JFrame {
     /**
      * Creates new form RegistroUsuario
      */
-    
-    
     private AlmacenajeUsuarios almacen;
     
     public InterfazUsuario() {

@@ -18,8 +18,6 @@ public class Inicio extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
-    
-    
     public static String t = "";
     public static String x = "";
     public static String nivel = "";
