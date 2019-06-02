@@ -142,16 +142,8 @@ public class InterfazUsuario extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         //Comprobando el dni
-        String[] columNames = {"Dni", "Nombre","Puntos","Dificultad","Partidas"};
-        JTable tabla = new JTable();
-        DefaultTableModel ranking = (DefaultTableModel)tabla.getModel();
-        ranking.addColumn(columNames);
-        for(int i = 0; i <= almacen.getLista().size();i++){
-            UsuarioDatos usuarios = new UsuarioDatos();
-            ranking.setValueAt(usuarios.getDni(), i, 0);
-            ranking.setValueAt(usuarios.getNombre(), i, 1);
-            ranking.setValueAt(usuarios.getPuntos(), i, 2);
-        }
+        Ranking ranking = new Ranking(almacen);
+        ranking.setVisible(true);
         /**
         String dni = jTextField1.getText();
         try{

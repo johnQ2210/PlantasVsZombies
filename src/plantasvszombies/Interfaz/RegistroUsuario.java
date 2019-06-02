@@ -20,11 +20,11 @@ public class RegistroUsuario extends javax.swing.JFrame {
      */
     private InterfazUsuario interfaz1;
     private AlmacenajeUsuarios almacena;
-    
+
     public RegistroUsuario(InterfazUsuario interfaz1, AlmacenajeUsuarios almacena) {
         this.almacena = almacena;
         this.interfaz1 = interfaz1;
-        
+
         interfaz1.setVisible(false);
         initComponents();
         setLocationRelativeTo(null);        //Centramos la ventana
@@ -32,7 +32,6 @@ public class RegistroUsuario extends javax.swing.JFrame {
         setTitle("Registro Usuario");       //Ponemos título a la ventana
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -115,17 +114,22 @@ public class RegistroUsuario extends javax.swing.JFrame {
         //Crear al usuario
         String dni = jTextField1.getText(); //Si los datos son incorrectos, se envía mensaje de error.
         String nombre = jTextField2.getText();
-        UsuarioDatos  usuario = new UsuarioDatos();
-        usuario.setDni(dni);
-        usuario.setNombre(nombre);
-        almacena.guardarUsuario(usuario);
-        
-        JOptionPane.showMessageDialog(this, "Usuario registrado", "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
-        
-        this.setVisible(false);
-        interfaz1.setVisible(true);
+        if (dni == "") {
+            JOptionPane.showMessageDialog(this, "Introduzca bien los datos.", "Error de registro", JOptionPane.ERROR_MESSAGE);
+        } else if(nombre == ""){
+            JOptionPane.showMessageDialog(this, "Introduzca bien los datos.", "Error de registro", JOptionPane.ERROR_MESSAGE);
+        }else {
+            UsuarioDatos usuario = new UsuarioDatos();
+            usuario.setDni(dni);
+            usuario.setNombre(nombre);
+            almacena.guardarUsuario(usuario);
+            JOptionPane.showMessageDialog(this, "Usuario registrado", "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
+            this.setVisible(false);
+            interfaz1.setVisible(true);
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
