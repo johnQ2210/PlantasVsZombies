@@ -19,9 +19,11 @@ public class Ranking extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     private AlmacenajeUsuarios almacen;
+    private UsuarioDatos usuario;
     
-    public Ranking(AlmacenajeUsuarios almacen) {
+    public Ranking(AlmacenajeUsuarios almacen, UsuarioDatos usuario) {
         this.almacen = almacen;
+        this.usuario = usuario;
         
         initComponents();
         setLocationRelativeTo(null);
@@ -34,7 +36,6 @@ public class Ranking extends javax.swing.JFrame {
         tabla.addColumn(columNames);
         String [] rowNames = {"1","2","3","4", "5","6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
         tabla.addRow(rowNames);
-        UsuarioDatos usuario = new UsuarioDatos();
         for(int i = 0; i <= almacen.getLista().size(); i++){
             tabla.setValueAt(usuario.getDni(), i, 0);
             tabla.setValueAt(usuario.getNombre(), i, 1);

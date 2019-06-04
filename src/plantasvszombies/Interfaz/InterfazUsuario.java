@@ -135,13 +135,13 @@ public class InterfazUsuario extends javax.swing.JFrame {
             Inicio in = new Inicio(this);
             in.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, "No existe el usuario", "Error de inicio", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No existe el usuario", "Usuario no encontrado", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        //Comprobando el dni
+        //Imprimir un jTable en el que aparezcan el ranking de jugadores
         Ranking ranking = new Ranking(almacen);
         ranking.setVisible(true);
         /**

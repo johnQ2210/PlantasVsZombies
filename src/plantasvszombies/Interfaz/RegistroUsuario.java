@@ -112,13 +112,16 @@ public class RegistroUsuario extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //Crear al usuario
-        String dni = jTextField1.getText(); //Si los datos son incorrectos, se envía mensaje de error.
+        String dni = jTextField1.getText();
         String nombre = jTextField2.getText();
-        if (dni == "") {
-            JOptionPane.showMessageDialog(this, "Introduzca bien los datos.", "Error de registro", JOptionPane.ERROR_MESSAGE);
-        } else if(nombre == ""){
-            JOptionPane.showMessageDialog(this, "Introduzca bien los datos.", "Error de registro", JOptionPane.ERROR_MESSAGE);
+        
+        //Si uno de los dos TextField están vacíos, se lanza una ventana de error, avisando que rellene los datos.
+        if (jTextField1.getText().length()== 0) {
+            JOptionPane.showMessageDialog(this, "Introduzca el DNI para registrarse.", "Error de registro", JOptionPane.ERROR_MESSAGE);
+        } else if(jTextField2.getText().length()==0){
+            JOptionPane.showMessageDialog(this, "Introduzca el nombre para registrarse.", "Error de registro", JOptionPane.ERROR_MESSAGE);
         }else {
+            //Se crea el usuario y se almacena en el HashMap
             UsuarioDatos usuario = new UsuarioDatos();
             usuario.setDni(dni);
             usuario.setNombre(nombre);
