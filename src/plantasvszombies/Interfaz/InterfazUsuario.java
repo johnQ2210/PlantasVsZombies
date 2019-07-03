@@ -142,7 +142,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         //Imprimir un jTable en el que aparezcan el ranking de jugadores
-        Ranking ranking = new Ranking(almacen);
+        Ranking ranking = new Ranking();
         ranking.setVisible(true);
         /**
         String dni = jTextField1.getText();

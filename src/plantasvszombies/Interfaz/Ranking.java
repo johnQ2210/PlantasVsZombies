@@ -21,7 +21,7 @@ public class Ranking extends javax.swing.JFrame {
     private AlmacenajeUsuarios almacen;
     private UsuarioDatos usuario;
     
-    public Ranking(AlmacenajeUsuarios almacen, UsuarioDatos usuario) {
+    public Ranking() {
         this.almacen = almacen;
         this.usuario = usuario;
         
